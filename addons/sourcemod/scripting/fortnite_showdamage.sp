@@ -1,4 +1,4 @@
-/*  SM Show iDamage as Fortnite
+/*  SM Show Damage as Fortnite
  *
  *  Copyright (C) 2018 Francisco 'Franc1sco' García
  * 
@@ -24,17 +24,21 @@
 
 #define SOUND "franug/ding.mp3"
 
+#define DATA "1.1"
+
 public Plugin myinfo =
 {
 	name = "SM Show iDamage as Fortnite",
 	author = "Franc1sco Steam: franug",
 	description = "",
-	version = "1.0",
+	version = DATA,
 	url = "http://steamcommunity.com/id/franug"
 };
 
 public void OnPluginStart()
 {
+	CreateConVar("sm_showdamage_as_fortnite_version", DATA, "", FCVAR_NOTIFY|FCVAR_DONTRECORD);
+	
 	HookEvent("player_hurt", Event_PlayerHurt);
 }
 
@@ -76,8 +80,10 @@ public Action Event_PlayerHurt(Handle event, const char[] name, bool dontBroadca
 	
 	if(iHp < 1)
 	{
-		SetHudTextParams(-1.0, -0.45, 2.0, 255, 255, 255, 200, 1);
-		
-		ShowHudText(iAttacker, 4, "ELIMINATED %N", iVictim);
+		SetHudTextParams(0.37, -0.45, 2.0, 255, 255, 255, 200, 1);
+		ShowHudText(iAttacker, 3, "ELIMINATED");
+    
+		SetHudTextParams(0.51, -0.45, 2.0, 255, 0, 0, 200, 1);
+		ShowHudText(iAttacker, 4, "%N", iVictim);
 	}
 }
