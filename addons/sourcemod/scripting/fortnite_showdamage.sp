@@ -24,7 +24,7 @@
 
 #define SOUND "franug/ding.mp3"
 
-#define DATA "1.1"
+#define DATA "1.2"
 
 public Plugin myinfo =
 {
@@ -65,13 +65,13 @@ public Action Event_PlayerHurt(Handle event, const char[] name, bool dontBroadca
 	
 	if(iHitgroup == 1) // headshot
 	{
-		SetHudTextParams(-1.0, 0.45, 2.0, 255, 117, 20, 200, 1); // orange
+		SetHudTextParams(-1.0, 0.45, 2.0, 255, 235, 20, 200, 1); // yellow
 		
 		EmitSoundToClient(iAttacker, SOUND); // emit sound
 	}
 	else
 	{
-		SetHudTextParams(-1.0, 0.45, 2.0, 255, 0, 0, 200, 1); // red
+		SetHudTextParams(-1.0, 0.45, 2.0, 255, 255, 255, 200, 1); // white
 	}
 	
 	ShowHudText(iAttacker, 5, "%i", iDamage); // same channel for prevent overlap
@@ -80,10 +80,10 @@ public Action Event_PlayerHurt(Handle event, const char[] name, bool dontBroadca
 	
 	if(iHp < 1)
 	{
-		SetHudTextParams(0.37, -0.45, 2.0, 255, 255, 255, 200, 1);
+		SetHudTextParams(0.37, 0.50, 2.0, 255, 255, 255, 200, 1); 
 		ShowHudText(iAttacker, 3, "ELIMINATED");
     
-		SetHudTextParams(0.51, -0.45, 2.0, 255, 0, 0, 200, 1);
+		SetHudTextParams(0.51, 0.50, 2.0, 255, 0, 0, 200, 1); 
 		ShowHudText(iAttacker, 4, "%N", iVictim);
 	}
 }
